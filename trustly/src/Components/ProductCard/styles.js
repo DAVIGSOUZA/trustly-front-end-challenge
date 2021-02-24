@@ -9,6 +9,9 @@ export const CardContainer = styled.div `
     margin: 0 20px 80px 20px;
     height: 370px;
     width: 297px;
+:hover {
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+}
 img {
     width: 100%;
     height: 40%;
@@ -61,4 +64,7 @@ export const AddButton = styled.button `
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     cursor: pointer;
+:hover {
+    background-color: #78A18A;
+}
 `

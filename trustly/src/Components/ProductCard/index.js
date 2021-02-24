@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { goToCheckoutPage } from '../../Routes/coordinators'
+import PrimaryBtn from '../PrimaryBtn'
 import { AddButton, CardContainer, OptionsContainer, Price } from './styles'
 
 export default function ProductCard(props) {
@@ -17,7 +18,7 @@ export default function ProductCard(props) {
                 <select></select>
             </OptionsContainer>
             <Price>$ {props.price}</Price>
-            <AddButton onClick={() => goToCheckoutPage(history)}> Add to cart</AddButton>
+            <PrimaryBtn onClick={() => goToCheckoutPage(history)} text="Add to cart" />
         </CardContainer>
     )
 }
