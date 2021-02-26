@@ -1,6 +1,6 @@
 import React from 'react'
 import { SearchBarContainer, SearchImg, SearchInput } from './styles'
-import SearchIcon from "../../img/Vector.png";
+import SearchIcon from "../../img/Vector.svg";
 
 export default function SearchBar() {
     return (
