@@ -10,13 +10,13 @@ export default function HomePage() {
     const {states, setters} = useContext(GlobalStateContext)
 
     useEffect(() => {
-        setters.setProducts(products)  /* axios request goes here, having CORS error, so I mock the data  */
-    }, [])
+        setters.setProducts(products)
+        console.log('oi')
+    }, [setters])
 
     const filteredProducts = states.products.filter(item => {
         return item.description.toLowerCase().includes(states.searchInput.toLowerCase())
     })
-
 
     return (
         <div>
