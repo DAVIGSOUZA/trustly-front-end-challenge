@@ -24,19 +24,21 @@ export default function CheckoutPage() {
 
     useEffect(() => {
         setTotalCost( price * quantity )
+
+    }, [price, quantity])
+
+    useEffect(() => {
         window.PayWithMyBank.addPanelListener(function(command, event) {
             if (command === 'event' && event.type === 'new_location') {
               if (event.data.indexOf('#success') === 0) {
                 goToConfirmationPage(history)
-              } else {
-                // alert('cancel!');
               }
               return false;
             }
           });
-    }, [])
+    }, [history])
 
-    const goToTrustlyIntegration = () => {
+    const confirmCheckout = () => {
         if (payMethod === "Online Banking") {
             const newTotal = (totalCost - 10)
             setters.setCart({...states.cart, userId: user.id, payMethod: payMethod, total: newTotal})
@@ -119,7 +121,7 @@ export default function CheckoutPage() {
                                 <img src={applepay} alt="" />    
                             </PayOptionButton>
 
-                            <PrimaryBtn onClick={() => goToTrustlyIntegration()} text="Continue"/>   
+                            <PrimaryBtn onClick={confirmCheckout} text="Continue"/>   
                         </PayOptionContainer>
                     </div>
                 </CheckoutContainer>
