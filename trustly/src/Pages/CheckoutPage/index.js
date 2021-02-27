@@ -1,48 +1,93 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import Header from '../../Components/Header'
 import { goToConfirmationPage } from "../../Routes/coordinators";
 import ProgressBar from "../../Components/StepBar";
-import InfoCard from '../../Components/InfoCard';
 import PrimaryBtn from "../../Components/PrimaryBtn";
 import { InfoContainer, PriceContainer, PageContainer, CheckoutContainer, Img, PayOptionContainer, PayOptionButton, SaveTag } from "./styles";
 import applepay from "../../img/applepay.svg";
 import banks from "../../img/banks.svg";
 import cards from "../../img/cards.svg";
 import { Text, Title, Subtitle } from "../../Components/Styles";
+import GlobalStateContext from "../../Global/GlobalStateContext";
+import { user, merchant } from "../../Data";
+
 
 export default function CheckoutPage() {
     const history = useHistory()
+    const {states, setters} = useContext(GlobalStateContext)
+    const [totalCost, setTotalCost] = useState(states.cart.price)
+    const [payMethod, setPayMethod] = useState("Online Banking")
+    const selected = "1px solid #5DAC50"
+    const price = Number(states.cart.price)
+    const quantity = Number(states.cart.quantity)
 
-    const productDescription = `x 1 Green Size 41 item #3419028346`;
+    useEffect(() => {
+        setTotalCost( price * quantity )
+        window.PayWithMyBank.addPanelListener(function(command, event) {
+            if (command === 'event' && event.type === 'new_location') {
+              if (event.data.indexOf('#success') === 0) {
+                goToConfirmationPage(history)
+              } else {
+                // alert('cancel!');
+              }
+              return false;
+            }
+          });
+    }, [])
 
+    const goToTrustlyIntegration = () => {
+        if (payMethod === "Online Banking") {
+            const newTotal = (totalCost - 10)
+            setters.setCart({...states.cart, userId: user.id, payMethod: payMethod, total: newTotal})
 
+            window.PayWithMyBank.establish({
+                accessId: 'D61EC9BAF0BB369B9438',
+                merchantId: '1004314986',
+                metadata: { demo: 'enabled' },
+                currency: 'USD',
+                paymentType: 'Deferred',
+                amount: states.cart.total,
+                description: user.email,
+                merchantReference: merchant.id,
+                returnUrl: '#success',
+                cancelUrl: '#cancel'
+              })
+        } else {
+            setters.setCart({...states.cart, userId: user.id, payMethod: payMethod, total: totalCost})
+            goToConfirmationPage(history)
+        }
+    }
+
+    const selectPayMethod = (method) => {
+        setPayMethod(method)
+    }
 
     return (
         <div>
             <Header backButton="true" title="Checkout"/>
             <ProgressBar/>
             <PageContainer>
-                <Img src="https://picsum.photos/300?random=1/" alt="" />
+                <Img src={states.cart.maxresURL} alt={states.cart.description} />
                 <CheckoutContainer>
                     <InfoContainer>
                         <div>
                             <Title>Cart total</Title>
-                            <Subtitle>SS Sneaker</Subtitle>
-                            <Text>x 1 Green Size 41 </Text>
-                            <Text>Item #2839u512401Copy</Text>
+                            <Subtitle>{states.cart.description}</Subtitle>
+                            <Text>x {states.cart.quantity} {states.cart.color} Size {states.cart.size}</Text>
+                            <Text>Item #{states.cart.id}</Text>
                         </div>
                         <div>
                             <Title>Delivery Details</Title>
-                            <Text>John smith</Text>
-                            <Text>phone 123445</Text>
-                            <Text>Adress: #2839u512401Copy</Text>
+                            <Text>{user.name}</Text>
+                            <Text>phone {user.phone}</Text>
+                            <Text>Adress: {user.address}</Text>
                             <PriceContainer>
                                 <div>
                                     <Subtitle>Total Cost</Subtitle>
                                     <Text>Delivery included</Text>
                                 </div>
-                                <span>$100</span>
+                                <span>${totalCost}</span>
                             </PriceContainer>
                         </div>
                     </InfoContainer>
@@ -50,19 +95,31 @@ export default function CheckoutPage() {
                         <h2>Select your payment method</h2>
                         <PayOptionContainer>
                             <SaveTag>SAVE $10</SaveTag>
-                            <PayOptionButton>
+                            <PayOptionButton 
+                                border={payMethod === "Online Banking"? selected : "none" } 
+                                onClick={() => selectPayMethod('Online Banking')}
+                            >
                                 <span>Online Banking</span>
                                 <img src={banks} alt="" />
                             </PayOptionButton>
-                            <PayOptionButton>
+
+                            <PayOptionButton 
+                                border={payMethod === "Credit Card"? selected : "none" } 
+                                onClick={() => selectPayMethod('Credit Card')}
+                            >
                                 <span>Card Payment</span>
                                 <img src={cards} alt="" />
                             </PayOptionButton>
-                            <PayOptionButton>
+
+                            <PayOptionButton 
+                                border={payMethod === "Apple Pay"? selected : "none" } 
+                                onClick={() => selectPayMethod('Apple Pay')}
+                            >
                                 <span>Apple Pay</span>
                                 <img src={applepay} alt="" />    
                             </PayOptionButton>
-                            <PrimaryBtn onClick={() => goToConfirmationPage(history)} text="Continue"/>   
+
+                            <PrimaryBtn onClick={() => goToTrustlyIntegration()} text="Continue"/>   
                         </PayOptionContainer>
                     </div>
                 </CheckoutContainer>

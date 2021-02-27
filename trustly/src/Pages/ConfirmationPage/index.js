@@ -1,25 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Header from '../../Components/Header'
-import ProgressBar from "../../Components/StepBar";
+import StepBar from "../../Components/StepBar";
 import PrimaryBtn from "../../Components/PrimaryBtn";
 import { PageContainer, CheckoutContainer, Img, InfoSection, InfoContainer, PriceContainer, PayMethod, ButtonContainer } from "./styles";
 import bankIcon from "../../img/green-bank-icon.svg";
 import { Subtitle, Text, Title } from '../../Components/Styles';
+import GlobalStateContext from "../../Global/GlobalStateContext";
+
 
 export default function ConfirmationPage() {
+    const {states} = useContext(GlobalStateContext)
 
     return (
         <div>
             <Header backButton="true" title="Review and Confirmation"/>
-            <ProgressBar/>
+            <StepBar lastStepActive='true'/>
             <PageContainer>
-                <Img src="https://picsum.photos/300?random=1/" alt="" />
+                <Img src={states.cart.maxresURL} alt={states.cart.description} />
                 <CheckoutContainer>
                     <InfoSection>
                         <InfoContainer>
                             <Title>Order summary</Title>
-                            <Subtitle>SS Sneaker</Subtitle>
-                            <Text>descrição do produto</Text>
+                            <Subtitle>{states.cart.description}</Subtitle>
+                            <Text>x {states.cart.quantity} {states.cart.color} Size {states.cart.size}</Text>
+                            <Text>Item #{states.cart.id}</Text>
                         </InfoContainer>
                         <InfoContainer>
                             <PriceContainer>
@@ -27,7 +31,7 @@ export default function ConfirmationPage() {
                                     <Subtitle>Total Cost</Subtitle>
                                     <Text>Delivery included</Text>
                                 </div>
-                                <span>$100</span>
+                                <span>${states.cart.total}</span>
                             </PriceContainer>
                         </InfoContainer>
                     </InfoSection>
@@ -36,7 +40,7 @@ export default function ConfirmationPage() {
                             <Title>Payment Method</Title>
                             <PayMethod>
                                 <img src={bankIcon} alt="" />
-                                <Subtitle>Online Banking</Subtitle>
+                                <Subtitle>{states.cart.payMethod}</Subtitle>
                             </PayMethod>
                         </InfoContainer>
                         <ButtonContainer>
