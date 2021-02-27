@@ -1,8 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { Avatar, BackButton, HeaderContainer, Title } from './styles'
-import avatar from "../../img/avatar.png";
 import arrowIcon from "../../img/arrow.svg";
+import { user } from "../../Data";
 
 export default function Header(props) {
     const history = useHistory()
@@ -18,7 +18,7 @@ export default function Header(props) {
                 </BackButton>
             }
             <Title>{props.title}</Title>
-            <Avatar src={avatar} alt="avatar" />
+            <Avatar src={user.profileImg} alt="avatar" />
         </HeaderContainer>
     )
 }

@@ -33,13 +33,14 @@ export const OptionsContainer = styled.div `
     width: 100%;
     color: #8D8D8D;
 
-span {
+label {
     font-size: 12px;
 }
 select {
     width: 70px;
     height: 28px;
     border-radius: 25px;
+    text-align-last: center;
 }
 select:focus {
     outline: none;

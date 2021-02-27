@@ -56,7 +56,7 @@ export const PayOptionButton = styled.button `
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: none;
+    border: ${props => props.border};
     border-radius: 8px;
     margin: 8px 0;
     padding: 30px;
@@ -67,7 +67,6 @@ export const PayOptionButton = styled.button `
     color: #535353;
 :focus {
     outline: none;
-    border: 1px solid #5DAC50;
 }
 `
 

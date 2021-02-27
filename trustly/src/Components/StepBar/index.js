@@ -1,28 +1,27 @@
 import React from 'react'
-import { Step, Steps, StepDescription, StepBarContainer, Line, Dot } from './styles'
+import { Step, Steps,InactiveStep,InactiveStepDescription, StepDescriptionContainer, StepBarContainer, Line } from './styles'
 
-export default function StepBar() {
+export default function StepBar(props) {
+
+    // according the design, 
+    // only the last step have style change 
+    // so there's no need to bring more complexity to the component
+
     return (
         <div>
             <StepBarContainer>
                 <Steps >
-                    <Step>
-                        <Dot></Dot>
-                    </Step>
-                    <Step>
-                        <Dot></Dot>
-                    </Step>
-                    <Step>
-                        <Dot></Dot>
-                    </Step>
+                    <Step/>
+                    <Step/>
+                    {props.lastStepActive ? <Step/> : <InactiveStep/> }
                 </Steps>
                 <Line/>
             </StepBarContainer>
-            <StepDescription>
+            <StepDescriptionContainer>
                 <span>Cart</span>
                 <span>Payment options</span>
-                <span>Receipt</span>
-            </StepDescription>
+                {props.lastStepActive? <span>Receipt</span> : <InactiveStepDescription>Receipt</InactiveStepDescription> }                
+            </StepDescriptionContainer>
         </div>
     )
 }
