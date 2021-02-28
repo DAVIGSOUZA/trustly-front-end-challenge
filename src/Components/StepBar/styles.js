@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const ComponentContainer = styled.div `
+  @media(max-width: 450px) {
+    display: none;
+  }
+`
 
 export const StepBarContainer = styled.div `
   margin: 0 20vw;
