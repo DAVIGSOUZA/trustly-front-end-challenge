@@ -11,7 +11,6 @@ export default function HomePage() {
 
     useEffect(() => {
         setters.setProducts(products)
-        console.log('oi')
     }, [setters])
 
     const filteredProducts = states.products.filter(item => {
