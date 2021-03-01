@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-
-// @media(max-width: 450px) {
-//     aqui vc aplica tudo q precisa mudar para caber na tela, que nesse exemplo é
-//     para telas de até 450px
-// }
-
 export const HeaderContainer = styled.header `
     display: flex;
     justify-content: space-between;
@@ -16,7 +10,7 @@ export const HeaderContainer = styled.header `
     }
 `
 
-export const Title = styled.h1 `
+export const HeaderTitle = styled.h1 `
     flex-grow: 1;
     text-align: center;
     align-self: center;
@@ -28,6 +22,19 @@ export const Title = styled.h1 `
     font-size: 26px;
     @media(max-width: 450px) {
         display: none;
+    }
+`
+
+export const MobileHeaderTitle = styled.h1 `
+    display: none;
+    @media(max-width: 450px) {
+        display: initial;
+        margin: 0;
+        margin-left: 6vw;
+        padding: 0;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 26px;
     }
 `
 

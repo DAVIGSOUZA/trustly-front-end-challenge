@@ -19,7 +19,7 @@ export default function HomePage() {
 
     return (
         <div>
-            <Header backButton="false" title="Sneakers"/>
+            <Header mobileTitle='false' backButton="false" title="Sneakers"/>
             <SearchBar/>
             <ProductsContainer>
                 {
