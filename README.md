@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# [Trustly Front End Challenge](https://trustly-front-end-challenge-seven.vercel.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a test for a Front-End Engineer position at Trustly. It's a simple checkout process of an e-commerce application in which the user will be able to buy one
+single product and pay using Trustly as the payment method.
 
-## Available Scripts
+## App deploy with vercel:
+https://trustly-front-end-challenge-seven.vercel.app/)
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Use the [node](https://nodejs.org/en/) package manager to install the depencies to run Trustly Front End Challenge locally.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Clone this repository e use the following command:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+npm install
+```
 
-### `npm test`
+## Folder Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This app was created using create-react-app boilerplate
 
-### `npm run build`
+In the src folder you will find the following folders:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Components ( app components and general styles)
+- Data ( data mocks for the app, in a real scenario the back end would provide them)
+- Global ( context and global states )
+- Pages ( difenrent pages you will found in the app )
+- Routes ( routes and coordinator functions ) 
+- Img ( image assets )
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This app uses:
+- Styles Components
+- React-router-dom
 
-### `npm run eject`
+Obs: Axios was installed but not used
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Screenshots
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Desktop
+![image](https://user-images.githubusercontent.com/69723573/109510596-f7feb700-7a80-11eb-8893-f981701a8ca2.png)
+![image](https://user-images.githubusercontent.com/69723573/109510790-2e3c3680-7a81-11eb-87e0-54b272f361a9.png)
+![image](https://user-images.githubusercontent.com/69723573/109510935-50ce4f80-7a81-11eb-9d92-95444cfcd01c.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Mobile
+![image](https://user-images.githubusercontent.com/69723573/109511217-968b1800-7a81-11eb-99b8-e3928dea15ef.png)
+![image](https://user-images.githubusercontent.com/69723573/109511462-d05c1e80-7a81-11eb-9a5c-6641d77f399b.png)
+![image](https://user-images.githubusercontent.com/69723573/109511104-7e1afd80-7a81-11eb-9cd4-621dc121e559.png)
