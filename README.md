@@ -25,15 +25,15 @@ In the src folder you will find the following folders:
 - Components ( app components and general styles)
 - Data ( data mocks for the app, in a real scenario the back end would provide them)
 - Global ( context and global states )
-- Pages ( difenrent pages you will found in the app )
+- Pages ( diferent pages you will found in the app )
 - Routes ( routes and coordinator functions ) 
 - Img ( image assets )
 
 ## Dependencies
 
 This app uses:
-- Styles Components
-- React-router-dom
+- styled-components
+- react-router-dom
 
 Obs: Axios was installed but not used
 
